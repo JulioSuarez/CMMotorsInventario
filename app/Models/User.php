@@ -41,4 +41,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function empleados(){
+        //hasMany{tien mucho} //metodo para dar la primari key
+    return $this->hasMany(Empleado::class);
+    }
 }
