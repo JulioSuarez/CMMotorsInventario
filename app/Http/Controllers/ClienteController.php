@@ -62,6 +62,7 @@ class ClienteController extends Controller
         $c->ci = $r->ci;
         $c->nombre = $r->nombre;
         $c->empresa =  $r->empresa;
+        $c->empresa =  $r->nit;
         $c->correo = $r->correo;
         $c->telefono =  $r->telefono;
         $c->direccion = $r->direccion;

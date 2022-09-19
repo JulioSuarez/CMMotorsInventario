@@ -15,17 +15,16 @@
                                     class="bg-blue-500 dark:bg-gray-100 text-white active:bg-blue-600 dark:text-gray-800 dark:active:text-gray-700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">Registrar
                                     Empleado</a>
                             </div>
-                            <div class="relative w-full max-w-full flex-grow flex-1 text-right">
-                                <a href="{{ Route('cliente.pdf') }}"
+                            {{-- <div class="relative w-full max-w-full flex-grow flex-1 text-right">
+                                <a href="{{ Route('Clientes.pdf') }}"
                                     class="bg-blue-500 dark:bg-gray-100 text-white active:bg-blue-600 dark:text-gray-800 dark:active:text-gray-700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">Imprimir
                                     </a>
-                            </div>
+                            </div> --}}
                             <tr
                                 class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                                 <th class="px-4 py-3">CI</th>
                                 <th class="px-4 py-3">Nombre</th>
                                 <th class="px-4 py-3">Telefono</th>
-                                <th class="px-4 py-3">Correo</th>
                                 <th class="px-4 py-3">Acciones</th>
                             </tr>
                         </thead>
@@ -35,13 +34,13 @@
                                     class="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400">
                                     <td class="px-4 py-3">
                                         <div class="flex items-center text-sm">
-                                            <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                                            {{-- <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
                                                 <img class="object-cover w-full h-full rounded-full"
-                                            src="{{ asset('img/fotosEmpleados/' . $p->foto) }}" alt=""
-                                            loading="lazy" />
+                                                src="{{ asset('img/fotosEmpleados/' . $p->foto) }}" alt=""
+                                                loading="lazy" />
                                                 <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true">
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                             <div>
                                                 <p class="font-semibold">{{ $p->ci }}</p>
                                                 <p class="text-xs text-gray-600 dark:text-gray-400"></p>
@@ -53,17 +52,14 @@
                                         <p>{{ $p->telefono }}</p>
                                     </td>
                                     <td class="px-4 py-3 text-xs">
-                                        <p>{{ $p->email }}</p>
-                                    </td>
-                                    <td class="px-4 py-3 text-xs">
                                         <button type="button"
                                             class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                            <a href="{{ Route('Cliente.edit', $p->ci) }}">
+                                            <a href="{{ Route('Empleado.edit', $p->ci) }}">
                                                 EDITAR
-                                            </a></butto>
+                                            </a></button>
                                             <button type="button"
                                                 class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-700">
-                                                <form action="{{ Route('Cliente.destroy', $p->ci) }}" method="POST">
+                                                <form action="{{ Route('Empleado.destroy', $p->ci) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <input type="submit" value="ELIMINAR" class=""

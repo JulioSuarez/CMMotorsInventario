@@ -16,11 +16,11 @@
                                     class="bg-blue-500 dark:bg-gray-100 text-white active:bg-blue-600 dark:text-gray-800 dark:active:text-gray-700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">Nuevo
                                     Cliente</a>
                             </div>
-                            <div class="relative w-full max-w-full flex-grow flex-1 text-right">
+                            {{-- <div class="relative w-full max-w-full flex-grow flex-1 text-right">
                                 <a href="{{ Route('cliente.pdf') }}"
                                     class="bg-blue-500 dark:bg-gray-100 text-white active:bg-blue-600 dark:text-gray-800 dark:active:text-gray-700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">Imprimir
                                     </a>
-                            </div>
+                            </div> --}}
                             <tr
                                 class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                                 <th class="px-4 py-3">Nombre ó Razon Social</th>

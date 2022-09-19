@@ -1,6 +1,6 @@
 @extends('navegador')
 @section('Contenido')
-    <form class="p-6 flex flex-col justify-center" method="POST">
+    <form class="p-6 flex flex-col justify-center" action="{{Route('Cliente.store')}}" method="POST">
         @csrf
         @method('POST')
         <div class="flex flex-col mt-2">
@@ -18,6 +18,12 @@
         <div class="flex flex-col mt-2">
             <label for="empresa" class="hidden">Empresa</label>
             <input type="text" name="empresa" id="empresa" placeholder="Empresa (Opcional)"
+                class="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 dark:text-gray-50 font-semibold focus:border-blue-500 focus:outline-none" />
+        </div>
+
+        <div class="flex flex-col mt-2">
+            <label for="empresa" class="hidden">NIT</label>
+            <input type="text" name="nit" id="nit" placeholder="NIT (Opcional)"
                 class="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 dark:text-gray-50 font-semibold focus:border-blue-500 focus:outline-none" />
         </div>
 

@@ -39,11 +39,11 @@ class ProveedorController extends Controller
     public function store(Request $r)
     {
         $p = new Proveedor();
-        $p->nombre_proveedor  = $r->nombre;
-        $p->proveedor_direccion  = $r->direccion;
-        $p->proveedor_telefono  = $r->telefono;
-        $p->proveedor_correo  = $r->correo;
-        $p->nombre_proveedor_contacto  = $r->contacto;
+        $p->nombre_proveedor  = $r->nombre_proveedor;
+        $p->proveedor_direccion  = $r->proveedor_direccion;
+        $p->proveedor_telefono  = $r->proveedor_telefono;
+        $p->proveedor_correo  = $r->proveedor_correo;
+        $p->nombre_proveedor_contacto  = $r->nombre_proveedor_contacto;
         $p->nit = $r->nit;
         $p->tipo = $r->tipo;
         $p->save();
@@ -64,13 +64,14 @@ class ProveedorController extends Controller
     public function update(Request $r, Proveedor $p)
     {
 
-        $p->nombre_proveedor  = $r->nombre;
+        $p->nombre_proveedor  = $r->nombre_proveedor;
         $p->proveedor_direccion  = $r->direccion;
-        $p->proveedor_telefono  = $r->telefono;
-        $p->proveedor_correo  = $r->correo;
-        $p->nombre_proveedor_contacto  = $r->contacto;
+        $p->proveedor_telefono  = $r->proveedor_telefono;
+        $p->proveedor_correo  = $r->proveedor_correo;
+        $p->nombre_proveedor_contacto  = $r->nombre_proveedor_contacto;
         $p->nit = $r->nit;
         $p->tipo = $r->tipo;
+
         $p->save();
         return redirect()->Route('Proveedor.index');
     }

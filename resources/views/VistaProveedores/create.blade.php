@@ -57,6 +57,14 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
+                                <label for="proveedor_direccion"
+                                    class="block text-normal text-lg sm:text-2xl font-medium text-gray-600 dark:text-gray-400">
+                                    Dirección</label>
+                                <input type="text" name="proveedor_direccion"
+                                    class="w-full mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 dark:text-gray-50 font-semibold focus:border-blue-500 focus:outline-none">
+                            </div>
+
+                            <div class="col-span-6 sm:col-span-3">
                                 <label for="proveedor_correo"
                                     class="block text-normal text-lg sm:text-2xl font-medium text-gray-600 dark:text-gray-400">
                                     Tipo</label>

@@ -1,44 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-
-    <h1>Editar Empleado</h1>
-
-    <form action="{{Route('Empleado.update',$empleado->ci)}}" method="POST">
+@extends('navegador')
+@section('Contenido')
+    <form class="p-6 flex flex-col justify-center" action="{{Route('Empleado.update', $empleado->ci) }}" method="POST">
         @csrf
         @method('PUT')
-        <label for="">nombre de usuario </label>
-        <input type="text" name="user" id="" value="{{$user->nombre_usuario}}"> <br>
+        <div class="flex flex-col mt-2">
+            <label for="user" class="hidden">Nombre de Usuario</label>
+            <input type="name" name="user" id="user" placeholder="Usuario" value="{{$user->nombre_usuario}}"
+                class="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 dark:text-gray-50 font-semibold focus:border-blue-500 focus:outline-none" />
+        </div>
+        <div class="flex flex-col mt-2">
+            <label for="correo" class="hidden">Email</label>
+            <input type="email" name="correo" id="correo" placeholder="Correo Electronico" value="{{$user->correo_electronico}}"
+                class="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 dark:text-gray-50 font-semibold focus:border-blue-500 focus:outline-none" />
+        </div>
+        <div class="flex flex-col mt-2">
+            <label for="password" class="hidden">Contraseña</label>
+            <input type="password" name="password" id="password" placeholder="******" value="{{$user->password}}"
+                class="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 dark:text-gray-50 font-semibold focus:border-blue-500 focus:outline-none" />
+        </div>
+        <div class="flex flex-col mt-2">
+            <label for="ci" class="hidden">Cedula de Identidad</label>
+            <input type="number" name="ci" id="ci" placeholder="Cedula de Identidad" value="{{$empleado->ci}}"
+                class="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 dark:text-gray-50 font-semibold focus:border-blue-500 focus:outline-none" />
+        </div>
 
-        <label for="">correo electronico </label>
-        <input type="email" name="correo" id="" value="{{$user->correo_electronico}}"> <br>
+        <div class="flex flex-col mt-2">
+            <label for="nombre" class="hidden">Nombre</label>
+            <input type="name" name="nombre" id="nombre" placeholder="Nombre" value="{{$empleado->nombre}}"
+            class="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 dark:text-gray-50 font-semibold focus:border-blue-500 focus:outline-none" />
+        </div>
 
-        <label for="">contrasena </label>
-        <input type="password" name="password" id="" value="{{$user->password}}"> <br>
+        <div class="flex flex-col mt-2">
+            <label for="apellido" class="hidden">Apellido</label>
+            <input type="name" name="apellido" id="apellido" placeholder="Apellido" value="{{$empleado->apellido}}"
+                class="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 dark:text-gray-50 font-semibold focus:border-blue-500 focus:outline-none" />
+        </div>
 
-        <label for="">ci </label>
-        <input type="number" name="ci" id="" value="{{$empleado->ci}}"> <br>
+        <div class="flex flex-col mt-2">
+            <label for="telefono" class="hidden">Telefono</label>
+            <input type="tel" name="telefono" id="telefono" placeholder="Numero de Telefono" value="{{$empleado->telefono}}"
+                class="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 dark:text-gray-50 font-semibold focus:border-blue-500 focus:outline-none" />
+        </div>
 
-        <label for="">nombre </label>
-        <input type="text" name="nombre" id="" value="{{$empleado->nombre}}"> <br>
-
-        <label for="">apellido </label>
-        <input type="text" name="apellido" id="" value="{{$empleado->apellido}}"> <br>
-
-        <label for="">telefono </label>
-        <input type="number" name="telefono" id="" value="{{$empleado->telefono}}"> <br>
-
-
-        <button type="submit">Guardar</button>
+        <button type="submit"
+            class="md:w-32 bg-blue-600 dark:bg-gray-100 text-white dark:text-gray-800 font-bold py-3 px-6 rounded-lg mt-4 hover:bg-blue-500 dark:hover:bg-gray-200 transition ease-in-out duration-300">Registrar</button>
     </form>
 
-
-
-</body>
-</html>
+@endsection

@@ -5,6 +5,8 @@ let input_nombre = document.getElementById('cliente');
 let input_telefono = document.getElementById('telefono');
 let input_empresa = document.getElementById('empresa');
 let input_nit = document.getElementById('nit');
+let input_dir = document.getElementById('dir');
+let input_correo = document.getElementById('correo');
 
 input_ci.addEventListener('keyup', (e) => {
     //para saber que se esta enviar
@@ -29,10 +31,12 @@ const buscar = (ci) => {
             // }));
 
             //  console.log(data.nombre+' '+data.apellido);
-            input_nombre.value = data.nombre + ' ' + data.apellido;
+            input_nombre.value = data.nombre;
             input_telefono.value = data.telefono;
-            //   input_empresa.value ='falta crear atributo emrpesa' ;
+            input_empresa.value = data.empresa;
             input_nit.value = data.nit;
+            input_dir.value = data.dir;
+            // input_correo.value = data.correo;
             //   recorrer, forech
             //  build_list(data.map(item))
             //mostrar solo el nombre

@@ -83,7 +83,7 @@ class VentasController extends Controller
         $venta = Venta::join('empleados as e','e.ci','=','ventas.ci_empleado')
                         ->join('clientes as c','c.ci','=','ventas.ci_cliente')
                         ->select('ventas.*','e.nombre as nombre_empleado','c.nombre as nombre_cliente'
-                                    ,'c.apellido')
+                                    ,'c.empresa')
                         ->where('ventas.id',$venta->id)->first();
                      //  dd($venta);
 

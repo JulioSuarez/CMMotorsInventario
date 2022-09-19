@@ -10,10 +10,10 @@
     <div class="w-full  my-6 content-center">
         <a class="px-8 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-600 focus:bg-blue-600 focus:outline-none sm:mx-2"
             href="{{ Route('Producto.create') }}"> Crear Producto</a>
-        <a class="px-8 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-600 focus:bg-blue-600 focus:outline-none sm:mx-2"
+        {{-- <a class="px-8 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-600 focus:bg-blue-600 focus:outline-none sm:mx-2"
             href="{{ Route('Categoria.create') }}"> Crear Categoria</a>
         <a class="px-8 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-600 focus:bg-blue-600 focus:outline-none sm:mx-2"
-            href="{{ Route('Categoria.index') }}"> Lista de Categoria</a>
+            href="{{ Route('Categoria.index') }}"> Lista de Categoria</a> --}}
     </div>
 
 
