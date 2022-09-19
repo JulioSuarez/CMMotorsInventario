@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Proveedor;
+use Illuminate\Support\Facades\DB;
 
 class ProveedorController extends Controller
 {
@@ -14,10 +15,9 @@ class ProveedorController extends Controller
      */
     public function index()
     {
-        $proveedores = Proveedor::get();
+        $proveedores = DB::table('proveedors')->paginate(10);
         //  dd($ps);
-          return view('VistaProveedores.index',compact('proveedores'));
-
+        return view('VistaProveedores.index', compact('proveedores'));
     }
 
     /**
@@ -36,9 +36,14 @@ class ProveedorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $r){
+    public function store(Request $r)
+    {
         $p = new Proveedor();
-        $p->nombre  = $r->nombre;
+        $p->nombre_proveedor  = $r->nombre;
+        $p->proveedor_direccion  = $r->direccion;
+        $p->proveedor_telefono  = $r->telefono;
+        $p->proveedor_correo  = $r->correo;
+        $p->nombre_proveedor_contacto  = $r->contacto;
         $p->nit = $r->nit;
         $p->tipo = $r->tipo;
         $p->save();
@@ -53,19 +58,25 @@ class ProveedorController extends Controller
 
     public function edit(Proveedor $p)
     {
-        return view('VistaProveedores.edit',compact('p'));
+        return view('VistaProveedores.edit', compact('p'));
     }
 
-    public function update(Request $r,Proveedor $p){
+    public function update(Request $r, Proveedor $p)
+    {
 
-        $p->nombre  = $r->nombre;
+        $p->nombre_proveedor  = $r->nombre;
+        $p->proveedor_direccion  = $r->direccion;
+        $p->proveedor_telefono  = $r->telefono;
+        $p->proveedor_correo  = $r->correo;
+        $p->nombre_proveedor_contacto  = $r->contacto;
         $p->nit = $r->nit;
         $p->tipo = $r->tipo;
         $p->save();
         return redirect()->Route('Proveedor.index');
     }
 
-    public function destroy(Proveedor $p){
+    public function destroy(Proveedor $p)
+    {
         $p->delete();
         return redirect()->Route('Proveedor.index');
     }

@@ -18,6 +18,7 @@ class AuthController extends Controller
     public function login()
     {
         // dd('llegue !!1');
+        
         return view('VistasAuth.login');
     }
 

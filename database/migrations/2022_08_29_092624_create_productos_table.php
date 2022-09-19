@@ -18,13 +18,15 @@ return new class extends Migration
             $table->String('cod_oem')->unique(); //codigo oem
             $table->String('cod_sustituto')->nullable()->unique(); //nunable
             $table->String('nombre');
-            $table->string('marca');
-            $table->string('procedencia');
+            $table->string('marca')->nullable();
+            $table->string('procedencia')->nullable();
+            $table->string('origen')->nullable();
             $table->string('descripcion');
             $table->unsignedBigInteger('cantidad');
             $table->unsignedBigInteger('cant_minima');
-            $table->decimal('precio1');
-            $table->decimal('precio2');
+            $table->decimal('precio_venta_con_factura');
+            $table->decimal('precio_venta_sin_factura');
+            $table->decimal('precio_compra');
             $table->string('foto')->nullable();
             $table->date('fecha_expiracion')->nullable();
             $table->string('tienda'); //hacer una clase is es que habria mas atributos

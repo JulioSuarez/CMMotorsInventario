@@ -58,15 +58,13 @@ class ClienteController extends Controller
     public function store(Request $r)
     {
 
-        //   dd('llegue');
         $c = new Cliente();
         $c->ci = $r->ci;
         $c->nombre = $r->nombre;
-        $c->apellido =  $r->apellido;
-        // $c->nit =  $r->nit;
-        // $c->email = $r->emial;
-        // $c->telefono =  $r->telefono;
-        //$c->direccion = $r->direccion;
+        $c->empresa =  $r->empresa;
+        $c->correo = $r->correo;
+        $c->telefono =  $r->telefono;
+        $c->direccion = $r->direccion;
         $c->save();
 
         return redirect()->route('Cliente.index');
@@ -108,11 +106,10 @@ class ClienteController extends Controller
         // dd($id->ci);
         $cliente->ci = $r->ci;
         $cliente->nombre = $r->nombre;
-        $cliente->apellido =  $r->apellido;
-        //  $c->nit =  $r->nit;
-        //  $c->email = $r->emial;
-        //  $c->telefono =  $r->telefono;
-        // $c->direccion = $r->direccion;
+        $cliente->empresa =  $r->empresa;
+        $cliente->correo = $r->correo;
+        $cliente->telefono =  $r->telefono;
+        $cliente->direccion = $r->direccion;
         $cliente->save();
 
         return redirect()->route('Cliente.index');

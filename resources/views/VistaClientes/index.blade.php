@@ -26,6 +26,7 @@
                                 <th class="px-4 py-3">Nombre ó Razon Social</th>
                                 <th class="px-4 py-3">CI/NIT</th>
                                 <th class="px-4 py-3">Telefono</th>
+                                <th class="px-4 py-3">Dirección</th>
                                 <th class="px-4 py-3">Correo</th>
                                 <th class="px-4 py-3">Acciones</th>
                             </tr>
@@ -36,32 +37,35 @@
                                     class="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400">
                                     <td class="px-4 py-3">
                                         <div class="flex items-center text-sm">
-                                            <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                                            {{-- <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
                                                 <img class="object-cover w-full h-full rounded-full"
                                                     src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=200&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
                                                     alt="" loading="lazy" />
                                                 <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true">
-                                                </div>
+                                                </div> --}}
                                             </div>
                                             <div>
-                                                <p class="font-semibold">{{ $p->nombre }} {{ $p->apellido }}</p>
-                                                <p class="text-xs text-gray-600 dark:text-gray-400"></p>
+                                                <p class="font-semibold">{{ $p->nombre }} </p>
+                                                <p class="text-xs text-gray-600 dark:text-gray-400">{{ $p->empresa }}</p>
                                             </div>
                                         </div>
                                     </td>
                                     <td class="px-4 py-3 text-sm">{{ $p->ci }}</td>
-                                    <td class="px-4 py-3 text-xs">
+                                    <td class="px-4 py-3 text-sm">
                                         <p>{{ $p->telefono }}</p>
                                     </td>
+                                    <td class="text-xs text-gray-600 dark:text-gray-400">
+                                        <p>{{ $p->direccion }}</p>
+                                    </td>
                                     <td class="px-4 py-3 text-xs">
-                                        <p>{{ $p->email }}</p>
+                                        <p>{{ $p->correo }}</p>
                                     </td>
                                     <td class="px-4 py-3 text-xs">
                                         <button type="button"
                                             class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
                                             <a href="{{ Route('Cliente.edit', $p->ci) }}">
                                                 EDITAR
-                                            </a></butto>
+                                            </a></button>
                                             <button type="button"
                                                 class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-700">
                                                 <form action="{{ Route('Cliente.destroy', $p->ci) }}" method="POST">

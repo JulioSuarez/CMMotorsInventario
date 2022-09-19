@@ -6,100 +6,173 @@ let input_telefono = document.getElementById('telefono');
 let input_empresa = document.getElementById('empresa');
 let input_nit = document.getElementById('nit');
 
-//pruebas Dom
-// console.log(xdxd)
-// const h3 = document.createElement('h3');
-// const texto = document.createTextNode('que odna puto!!!!');
-// xdxd.appendChild(h3);
-// h3.appendChild(texto);
-//'keyup' = evento de cuando levante la tecla
-
-
-input_ci.addEventListener('keyup', (e)=>{
+input_ci.addEventListener('keyup', (e) => {
     //para saber que se esta enviar
     //console.log(e.target.value);
 
     //almacenar el valor que se buscara
     let ci = e.target.value;
-    if(ci.length > 3){
+    if (ci.length > 3) {
         //buscar nombre
         // let cliente = buscar(ci);
-       buscar(ci);
+        buscar(ci);
     }
 });
 
 //funcion para buscar el ci
-const buscar =(ci) =>{
-    fetch("http://localhost:8000/api/ClienteApi/"+ci)
-        .then((res)=> res.json()) //promesa
+const buscar = (ci) => {
+    fetch("http://localhost:8000/api/ClienteApi/" + ci)
+        .then((res) => res.json()) //promesa
         .then((data) => {
             // MostrarNombre(data.map((item) =>{
             //     return item.nombre;
             // }));
 
-        //  console.log(data.nombre+' '+data.apellido);
-          input_nombre.value =data.nombre+' '+data.apellido ;
-          input_telefono.value =data.telefono ;
-        //   input_empresa.value ='falta crear atributo emrpesa' ;
-          input_nit.value =data.nit ;
-         //   recorrer, forech
-          //  build_list(data.map(item))
-           //mostrar solo el nombre
-         //  console.log(item);
-              return ;
+            //  console.log(data.nombre+' '+data.apellido);
+            input_nombre.value = data.nombre + ' ' + data.apellido;
+            input_telefono.value = data.telefono;
+            //   input_empresa.value ='falta crear atributo emrpesa' ;
+            input_nit.value = data.nit;
+            //   recorrer, forech
+            //  build_list(data.map(item))
+            //mostrar solo el nombre
+            //  console.log(item);
+            return;
 
         })
-        .catch(e => {console.log(e)})
+        .catch(e => { console.log(e) })
+}
+
+
+//-----------------------------------------------------------------------
+arrayMonto = [];
+arrayCantidad = [];
+
+//cereaciones de eventos para la acciones que se hagan
+const crearEventListeners = (c) => {
+    arrayMonto[c - 1] = 0;
+    arrayCantidad[c - 1] = 1;
+    let input_cod_oem = document.getElementById('cod_oem' + c);
+    let input_precio = document.getElementById('precio' + c);
+    let button_eliminar = (document.getElementById('button_eliminar' + c));
+    let input_cantidad = (document.getElementById('cantidad' + c));
+    let input_subtotal = (document.getElementById('subtotal' + c));
+
+    console.log('se creo el evento de cod en la fila: ' + c)
+    console.log('array monot: ' + arrayMonto)
+    console.log('array cantiad: ' + arrayCantidad)
+
+    //crear el evetno para cod_oem
+    input_cod_oem.addEventListener('keyup', (e) => {
+        //almacenar el valor que se buscara en cod
+        let cod = e.target.value;
+        if (cod.length > 3 || cod.length == 0) {
+            //buscar nombre
+            // let cliente = buscar(ci);
+            buscarCod(cod, c);
+        }
+    });//end evento de cod_oem
+
+    //evento cuando haya movientos en la caja de precio
+    input_precio.addEventListener('keyup', (e) => {
+        //miestras se difereetes de vacio
+        let precio = e.target.value;
+        if (precio.length != 0) {
+            console.warn('ENTRE AL ENVERTO DE PRECIO');
+            console.log('Array:' + arrayMonto);
+            let cant = document.getElementById('cantidad' + i).value;
+            console.log('cantidad:' + cant);
+            precio = precio * cant;
+            input_subtotal.value = precio;
+            // console.log('precio:'+ precio);
+            let aux = arrayMonto[c - 1] - parseInt(precio);
+            // console.log('axu: '+aux);
+            monto1 = monto1 - (aux);
+            document.getElementById('monto_total').value = monto1;
+            arrayMonto[c - 1] = precio;
+            //  console.warn('Array:'+ arrayMonto);
+        } else {
+            monto1 = monto1 - (arrayMonto[c - 1]);
+            document.getElementById('monto_total').value = monto1;
+            arrayMonto[c - 1] = 0;
+        }
+
+    });//end input precio
+
+    button_eliminar.addEventListener('click', e => {
+        //prevenir el evnto que viene por efauld
+        e.preventDefault();
+        // console.warn('ENTRE EN '+k);
+        monto1 = monto1 - arrayMonto[c - 1];
+        arrayMonto[c - 1] = 0;
+        arrayMonto[c - 1] = 0;
+        let trx = document.getElementById('tr' + c);
+        //   console.log(trx);
+        trx.remove();
+        //   console.log('Eliminado Fila:'+k);
+        eliminados.push(c);
+        disminuir_item();
+        document.getElementById('monto_total').value = monto1;
+    });
+
+
+    //cuando haya movimiento en la cantidad
+    input_cantidad.addEventListener('change', (e) => {
+        console.warn('EVENTO CANTIDADA');
+        console.log('Array:' + arrayMonto);
+        let cant = e.target.value;
+        console.log('cantidad:' + cant);
+        input_cantidad.value = cant;
+        //multiplicar por el precio unitario
+        let aux = input_precio.value * cant;
+        console.log('aux A=' + aux);
+        input_subtotal.value = aux;
+        // aux = arrayMonto[c-1] - aux;
+        // console.log('axu B: '+aux);
+        monto1 = monto1 - (arrayMonto[c - 1] - aux);
+        console.log('total: ' + monto1);
+        document.getElementById('monto_total').value = monto1;
+        arrayMonto[c - 1] = aux;
+        console.log('Arrat: ' + arrayMonto)
+    });
+
 }
 
 
 
-
-
-
-// let input_cod_oem = [];
-
-// let table = document.getElementsByClassName('trtr');
-// console.log(table.length);
-// //console.log(document.getElementById('cod_oem'+2));
-
-// for (let i = 1; i <= table.length; i++) {
-//     input_cod_oem[i] = (document.getElementById('cod_oem'+i));
-//    // console.log(document.getElementById('cod_oem'+i));
-
-//     //funoces
-//     input_cod_oem[i].addEventListener('keyup', (e)=>{
-//             //para saber que se esta enviar
-
-//             //almacenar el valor que se buscara
-//             let cod = e.target.value;
-//             if(cod.length > 0){
-//                 //buscar nombre
-//                 // let cliente = buscar(ci);
-//                buscarCod(cod,i);
-//             }
-//         });
-
-// }
-
-//console.log(input_cod_oem);
-
-
-
-
 //funcion para buscar el ci
-const buscarCod =(cod,i) =>{
-    fetch("http://localhost:8000/api/ProductoApi/"+cod)
-        .then((res)=> res.json()) //promesa
+const buscarCod = (cod, i) => {
+    fetch("http://localhost:8000/api/ProductoApi/" + cod)
+        .then((res) => res.json()) //promesa
         .then((data) => {
-          //  console.log(i);
-     // input_nombre.value =data.nombre+' '+data.apellido ;
-      document.getElementById('detalles'+i).value=data.nombre;
-   // console.log(document.getElementById('detalles'+i));
-         document.getElementById('precio'+i).value=data.precio1;
+            console.warn('entre a buscar en la posicion:' + i);
+            document.getElementById('detalles' + i).value = data.nombre;
+            //   document.getElementById('detalles'+i).value=data.nombre;
+            if (data.precio_venta_con_factura != arrayMonto[i - 1]) {
 
-              return ;
+                document.getElementById('precio' + i).value = data.precio_venta_con_factura;
 
-        })
-        .catch(e => {console.log(e)})
+                let cant = document.getElementById('cantidad' + i).value;
+                let precio = data.precio_venta_con_factura * cant;
+                console.log(cant);
+                document.getElementById('subtotal' + i).value = precio;
+                //  monto1 = monto1 + parseInt(data.precio_venta_con_factura);
+                monto1 = monto1 + precio;
+                document.getElementById('monto_total').value = monto1;
+                // arrayMonto[i-1] = parseInt(data.precio_venta_con_factura);
+                arrayMonto[i - 1] = precio;
+                arrayCantidad[i - 1] = cant;
+            }
+            return;
+
+        }) //end de data
+        .catch(() => {
+            //que hacer cuando hay un error
+            console.log('NO SE ENCONTRO PRODUCTO');
+            document.getElementById('subtotal' + i).value = 0;
+            document.getElementById('precio' + i).value = 0;
+            monto1 = monto1 - arrayMonto[i - 1];
+            document.getElementById('monto_total').value = monto1;
+            arrayMonto[i - 1] = 0;
+        });
 }

@@ -2,13 +2,11 @@ let agregar = document.getElementById('button_adicionar');
 let input_cod_oem = [];
 let button_eliminar = [];
 let eliminados = [];
+let monto1 = 0;
 let i =1;
 
-let productos = '{!!$productos}}';
-console.log(productos)
 
-
-
+crearEventListeners(i);
 
 //caundo se haga un clink en el boton
 agregar.addEventListener('click',e =>{
@@ -48,6 +46,9 @@ agregar.addEventListener('click',e =>{
       let td6 = document.createElement('td');
       td6.className="p-2";
 
+      let td7 = document.createElement('td');
+      td6.className="p-2";
+
 
       let inp_item = document.createElement('p');
       inp_item.className="text-center font-medium text-black";
@@ -59,18 +60,21 @@ agregar.addEventListener('click',e =>{
       inp_cod.className="text-left font-medium text-green-500";
       inp_cod.placeholder='code';
       inp_cod.id = 'cod_oem'+i;
+      inp_cod.name = 'cod_oem[]';
       inp_cod.type = 'text';
 
       let inp_detalle = document.createElement('input');
       inp_detalle.className="text-left font-medium text-black";
       inp_detalle.placeholder='Detalle';
       inp_detalle.id = 'detalles'+i;
+      inp_detalle.name = 'detalles[]';
       inp_detalle.type = 'text';
 
       let inp_cantidad = document.createElement('input');
       inp_cantidad.className="text-right font-medium text-black";
       inp_cantidad.value= 1;
       inp_cantidad.id = 'cantidad'+i;
+      inp_cantidad.name = 'cantidad[]';
       inp_cantidad.min = 0;
       inp_cantidad.max = 9;
       inp_cantidad.type = 'number';
@@ -81,14 +85,27 @@ agregar.addEventListener('click',e =>{
       //inp_precio.placeholder= 00,00;
       inp_precio.value = 0;
       inp_precio.id = 'precio'+i;
+      inp_precio.name = 'precio[]';
      // console.log(inp_precio);
+
+     let inp_subtotal = document.createElement('input');
+     inp_subtotal.className="text-left font-medium text-black";
+     inp_subtotal.type = 'number';
+     //inp_subtotal.placeholder= 00,00;
+     inp_subtotal.value = 0;
+     inp_subtotal.id = 'subtotal'+i;
+     inp_subtotal.name = 'subtotal[]';
+     inp_subtotal.readOnly;
+    // console.log(inp_subtotal);
 
 
 
       let bt_eliminar = document.createElement('button');
       bt_eliminar.id = "button_eliminar"+i;
-      let eli = document.createTextNode('Elimnar');
-      bt_eliminar.appendChild(eli);
+      bt_eliminar.name = "button_eliminar"+i;
+      bt_eliminar.innerHTML = "Eliminar"
+    // let eli = document.createTextNode('Elimnar');
+     // bt_eliminar.appendChild(eli);
 
       //hacer un inetHTML para eliminar
 
@@ -116,93 +133,25 @@ agregar.addEventListener('click',e =>{
        tr.appendChild(td4);
        tr.appendChild(td5);
        tr.appendChild(td6);
+       tr.appendChild(td7);
 
        td1.appendChild(inp_item);
        td2.appendChild(inp_cod);
        td3.appendChild(inp_detalle);
        td4.appendChild(inp_cantidad);
        td5.appendChild(inp_precio);
-        td6.appendChild(bt_eliminar);
+       td6.appendChild(inp_subtotal);
+       td7.appendChild(bt_eliminar);
 
        tabla.appendChild(tr);
        disminuir_item();//para ordenar los items
-
-  //  precio_totalxd();
-
-
-    // console.log(tr);
-
-
-
-
-// let table = document.getElementsByClassName('trtr');
-// console.log(table.length);
-//console.log(document.getElementById('cod_oem'+2));
-
-    for (let c = 1; c <= i; c++) {
-    input_cod_oem[c] = (document.getElementById('cod_oem'+c));
-   // console.log(document.getElementById('cod_oem'+i));
-   console.log('fila adicionada' +i);
-    //buscar siempre y cuando no este eliminado
-    if(esta_eliminados(c)){
-     //   console.log('esta eliminado')
-    }else{
-        input_cod_oem[c].addEventListener('keyup', (e)=>{
-            //para saber que se esta enviar
-
-            //almacenar el valor que se buscara
-            let cod = e.target.value;
-            if(cod.length > 0){
-                //buscar nombre
-                // let cliente = buscar(ci);
-               buscarCod(cod,c);
-            }
-            });//enb evento
-    }//end if
-
-    }
-
-
-    let monto1 = 0;
-    for (let k = 1; k <= i; k++) {
-    button_eliminar[k] = (document.getElementById('button_eliminar'+k));
-    //console.log('total de filas desde auto: '+i);
-
-        if(esta_eliminados(k)){
-            // console.log('esta eliminado')
-        }else{
-            monto1 = monto1+parseInt(precio_totalxd(k)); //saca precio con suma
-            button_eliminar[k].addEventListener('click',e =>{
-                //prevenir el evnto que viene por efauld
-            e.preventDefault();
-            // console.warn('ENTRE EN '+k);
-                if(esta_eliminados(k)){
-                    // console.log('esta eliminado')
-                }else{
-                //let tabla = document.getElementById('table');
-                let trx = document.getElementById('tr'+k);
-                //   console.log(trx);
-                trx.remove();
-                //   console.log('Eliminado Fila:'+k);
-                eliminados.push(k);
-                disminuir_item();
-                //    console.log('Eliminados'+eliminados);
-                }
-
-            });
-
-          //  monto1 = monto1+parseInt(precio_totalxd(k)); //saca precio con suma
-
-
-        }
-    }//end for de eliminar
-
-//monto total
-    document.getElementById('monto_total').value=monto1;
-
+       crearEventListeners(i);
 
 
 }); //fin del boton adicoinar
+
+
+
 
 
 const esta_eliminados =(k) =>{
@@ -219,7 +168,7 @@ const disminuir_item =() =>{
     let xx  = 1; //contador de iteam
     for (let x = 1; x <= i; x++) {
         if(esta_eliminados(x)==false){
-            console.log('entree con'+x)
+    //        console.log('entree con'+x)
           //  let table = document.getElementById('tabla');
             let item = document.getElementById('item'+x);
              item.textContent = xx;
@@ -237,22 +186,25 @@ const disminuir_item =() =>{
 
 // }
 
-
-
 //retorna el precio si es que hubo un movimiento
 const precio_totalxd =(k)=>{
     console.warn('LLEGUE A PRECIO');
     console.warn('K = '+k);
+    let inp_precio = (document.getElementById('precio'+k));
     //HUBO ALGUN MOVIENOT
     if(esta_eliminados(k)==false){
-        let inp_precio = (document.getElementById('precio'+k));
-        console.log(inp_precio);
-        inp_precio.addEventListener('click',e =>{
-        e.preventDefault();
-        return inp_precio.value;
+        //console.log(inp_precio);
+        inp_precio.addEventListener('keyup',e =>{
+
+            e.preventDefault();
+            console.log('entre');
+            console.log(inp_precio);
+            return inp_precio.value;
         });
+        console.log('no entre');
     }
-        return  inp_precio.value;
+    console.log('esty devolciendo'+5);
+        return  5;
 }
 
 //HACE UN EVENTO DE CUANDO SE MUEVA UN SOLO DATO DE

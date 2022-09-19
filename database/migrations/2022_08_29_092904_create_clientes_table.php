@@ -16,12 +16,11 @@ return new class extends Migration
         Schema::create('clientes', function (Blueprint $table) {
             $table->id('ci');
             $table->string('nombre');
-            $table->string('apellido');
+            $table->string('empresa')->nullable();
             $table->unsignedBigInteger('nit')->nullable(); //nunable
-            $table->string('email')->nullable();
+            $table->string('correo')->nullable();
             $table->unsignedBigInteger('telefono')->nullable();
             $table->string('direccion')->nullable();
-
         });
     }
 

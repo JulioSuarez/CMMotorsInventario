@@ -29,8 +29,8 @@
     <div class="flex flex-wrap items-center px-4 py-2">
         <div class="relative w-full max-w-full flex-grow flex-1 text-left">
             <a href="{{ Route('Venta.create') }}"
-            class="md:w-32 bg-blue-600 dark:bg-gray-100 text-white dark:text-gray-800 font-bold py-3 px-6 rounded-lg mt-4 hover:bg-blue-500 dark:hover:bg-gray-200 transition ease-linear duration-300"
-            type="button">REGISTRAR</a>
+                class="md:w-32 bg-blue-600 dark:bg-gray-100 text-white dark:text-gray-800 font-bold py-3 px-6 rounded-lg mt-4 hover:bg-blue-500 dark:hover:bg-gray-200 transition ease-linear duration-300"
+                type="button">REGISTRAR</a>
             <!-- class="bg-blue-500 dark:bg-gray-100 text-white active:bg-blue-600 dark:text-gray-800 dark:active:text-gray-700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" -->
         </div>
         <div class="relative w-full max-w-full flex-grow flex-1">
@@ -43,8 +43,7 @@
             <table class="w-full">
                 <thead>
                     <tr
-                        class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b
-                     dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                        class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                         <th class="px-4 py-3">Nro_Venta</th>
                         <th class="px-4 py-3">Nombre Cliente </th>
                         <th class="px-4 py-3">Nombre Empleado </th>

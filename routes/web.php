@@ -11,6 +11,7 @@ use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\UbicacionController;
 use App\Http\Controllers\VentasController;
 
+
 use PHPUnit\Framework\MockObject\Rule\Parameters;
 
 //use App\Http\Controllers\Contr;
@@ -105,5 +106,6 @@ Route::resource('Venta', VentasController::class)
 
 
 // ruta de prueba julico
-
 Route::post('myurl', [AuthController::class, 'show']);
+Route::get('/navegador', [ProductoController::class, 'navar'])
+->name('navegador');

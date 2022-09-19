@@ -110,48 +110,47 @@
                                 <div class="font-semibold text-center">Precio</div>
                             </th>
                             <th class="p-2">
+                                <div class="font-semibold text-center">Sub Total</div>
+                            </th>
+                            <th class="p-2">
                                 <div class="font-semibold text-center">Eliminar</div>
                             </th>
                         </tr>
                     </thead>
 
-                    {{-- @for ($i = 1; $i <= 1; $i++) --}}
                     <tbody id="tabla" class="text-sm divide-y divide-gray-100 lex ">
-                        @php $i=1;       @endphp
-                        {{-- <div class="clonar"> --}}
-                        <tr class="trtr" id="tr{{$i}}">
-
+                        <tr class="trtr" id="tr1">
                             <td class="p-2" >
                                 <p class="text-center font-medium text-black"
-                                id="item{{$i}}"">
-                                     {{$i}}
-                                </p>
+                                id="item1">  1 </p>
                             </td>
-
-
                             <td class="p-2">
                                 <input type="text" class="text-left font-medium text-green-500" name="cod_oem[]"
-                                    placeholder="cod" id="cod_oem{{$i}}">
-
+                                    placeholder="cod" id="cod_oem1">
                             </td>
                             <td class="p-2">
                                 <input type="text" class="text-left font-medium text-black" name="detalles[]"
-                                    placeholder="detalle" id="detalles{{$i}}">
+                                    placeholder="detalle" id="detalles1">
                             </td>
                             <td class="p-2">
                                 <input type="number" class="text-right font-medium text-black" name="cantidad[]"
-                                    id="cantidad{{$i}}" min="1" max="9" value="1" >
+                                    id="cantidad1" min="1" max="9" value="1" >
                             </td>
 
                             <td class="p-2">
-                                <input class="text-left font-medium text-black" name="precio[]" id="precio{{$i}}"
-                                value="{{00.00}}" type="number">
+                                <input class="text-left font-medium text-black" name="precio[]" id="precio1"
+                                value="{{00}}" type="number">
+                            </td>
+
+                            <td class="p-2">
+                                <input class="text-left font-medium text-black" name="subtotal[]" id="subtotal1"
+                                value="{{00}}" type="number" readonly>
                             </td>
 
                             {{-- botono de elimniar --}}
                             <td class="p-2">
                                 <div class="flex justify-center">
-                                    <button id="button_eliminar{{$i}}" >
+                                    <button id="button_eliminar1" >
                                         <svg class="w-8 h-8 hover:text-blue-600 rounded-full hover:bg-gray-100 p-1"
                                             fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                             xmlns="http://www.w3.org/2000/svg">
@@ -169,7 +168,7 @@
 
                             <td class="p-2">
                                 <p class="text-center font-medium text-black">
-                                    @php $i++; @endphp {{$i}}
+                                    @php $i++; @endphp 1
                                 </p>
                             </td>
 

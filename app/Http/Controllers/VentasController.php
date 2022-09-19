@@ -56,11 +56,12 @@ class VentasController extends Controller
     //dd(count($r->cod_oem));
       //  falta cargar empres, nit , telefono
         for ($i=0; $i < count($r->cod_oem) ; $i++) {
+            $id_producto = Producto::where('cod_oem',$r->cod_oem[$i])->first();
             $d = new DetalleVenta();
          //   $d->detalle = $r->detalles[$i];
             $d->cantidad = $r->cantidad[$i];
-            $d->precio =  $r->precio[$i];
-            $d->id_producto = $r->cod_oem[$i] ;
+            $d->precio =  $r->subtotal[$i];
+            $d->id_producto = $id_producto->id;
             $d->id_venta = $v->id;
             $d->save();
         }

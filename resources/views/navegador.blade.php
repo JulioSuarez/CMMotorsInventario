@@ -182,8 +182,8 @@
             <div class="fixed w-full flex items-center justify-between h-14 text-white z-10">
                 <div
                     class="flex items-center justify-start md:justify-center pl-3 w-14 md:w-64 h-14 bg-blue-800 dark:bg-gray-800 border-none">
-                    <!-- <img class="w-10 h-2 md:w-10 md:h-10 mr-2 rounded-md overflow-hidden" src="{{ asset('img/logocm.gif') }}" /> -->
-                    <span class="text-2x1">CM Motor's</span>
+                    <img class="w-100 h-2 md:w-100 md:h-10 mr-2 rounded-md overflow-hidden" src="{{ asset('img/logo-cm.png') }}" />
+                    {{-- <span class="text-2x1">CM Motor's</span> --}}
                 </div>
                 <div class="flex justify-between items-center h-14 bg-blue-800 dark:bg-gray-800 header-right">
                     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -197,7 +197,9 @@
                         </button>
                         <div class="search">
                             <i class="fas fa-search icon"></i>
-                            <input type="text" id="mysearch" class="w-full pl-3 text-sm text-black outline-none focus:outline-none bg-transparent" placeholder="Buscar OEM">
+                            <input type="text" id="mysearch"
+                                class="w-full pl-3 text-sm text-black outline-none focus:outline-none bg-transparent"
+                                placeholder="Buscar OEM">
                         </div>
 
 
@@ -271,7 +273,9 @@
                                 class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
                                 <span class="inline-flex justify-center items-center ml-4">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor"
-                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z">
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z">
                                         </path>
                                     </svg>
                                 </span>
@@ -295,6 +299,25 @@
                                 <span class="ml-2 text-sm tracking-wide truncate">
                                     Dashboard
                                 </span>
+                                @php
+                                //metodo para sacar la cantidad de productos con cantidad minima "c"
+                                    use App\Models\Producto;
+                                    $productos = Producto::get();
+                                    // dd($productos);
+                                    $c = 0;
+                                    foreach ($productos as $p){
+                                        if ($p->estado == 'DISPONIBLE'){
+                                            if ($p->cantidad != $p->cant_minima){
+                                                $c = $c + 1;
+                                            }
+                                        }
+                                    }
+                                    // dd($c);
+                                    // $count = DB::table('productos')->count();
+                                @endphp
+                                    <span
+                                    class="hidden md:block px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-red-500 bg-red-50 rounded-full">
+                                    {{$c}}</span>
                             </a>
                         </li>
 
@@ -397,7 +420,7 @@
 
 
 
-                        <li>
+                        {{-- <li>
                             <a href="#"
                                 class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
                                 <span class="inline-flex justify-center items-center ml-4">
@@ -410,8 +433,8 @@
                                 </span>
                                 <span class="ml-2 text-sm tracking-wide truncate">Messages</span>
                             </a>
-                        </li>
-                        <li>
+                        </li> --}}
+                        {{-- <li>
                             <a href="#"
                                 class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
                                 <span class="inline-flex justify-center items-center ml-4">
@@ -426,13 +449,13 @@
                                 <span
                                     class="hidden md:block px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-red-500 bg-red-50 rounded-full">1.2k</span>
                             </a>
-                        </li>
-                        <li class="px-5 hidden md:block">
+                        </li> --}}
+                        {{-- <li class="px-5 hidden md:block">
                             <div class="flex flex-row items-center mt-5 h-8">
                                 <div class="text-sm font-light tracking-wide text-gray-400 uppercase">Settings</div>
                             </div>
-                        </li>
-                        <li>
+                        </li> --}}
+                        {{-- <li>
                             <a href="#"
                                 class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
                                 <span class="inline-flex justify-center items-center ml-4">
@@ -445,8 +468,8 @@
                                 </span>
                                 <span class="ml-2 text-sm tracking-wide truncate">Profile</span>
                             </a>
-                        </li>
-                        <li>
+                        </li> --}}
+                        {{-- <li>
                             <a href="#"
                                 class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
                                 <span class="inline-flex justify-center items-center ml-4">
@@ -461,7 +484,7 @@
                                 </span>
                                 <span class="ml-2 text-sm tracking-wide truncate">Settings</span>
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                     <p class="mb-14 px-5 py-3 hidden md:block text-center text-xs">CM Motor´s @2022</p>
                 </div>

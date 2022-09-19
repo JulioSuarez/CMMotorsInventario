@@ -4,32 +4,38 @@
         @csrf
         @method('POST')
         <div class="flex flex-col mt-2">
-            <label for="name" class="hidden">Cedula de Identidad</label>
-            <input type="name" name="ci" id="name" placeholder="Cedula de Identidad"
+            <label for="ci" class="hidden">CI/NIT</label>
+            <input type="number" name="ci" id="ci" placeholder="CI/NIT"
                 class="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 dark:text-gray-50 font-semibold focus:border-blue-500 focus:outline-none" />
         </div>
 
         <div class="flex flex-col mt-2">
-            <label for="name" class="hidden">Nombre</label>
-            <input type="name" name="nombre" id="name" placeholder="Nombre"
+            <label for="nombre" class="hidden">Nombre</label>
+            <input type="nombre" name="nombre" id="nombre" placeholder="Nombre"
                 class="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 dark:text-gray-50 font-semibold focus:border-blue-500 focus:outline-none" />
         </div>
 
         <div class="flex flex-col mt-2">
-            <label for="name2" class="hidden">Apellido</label>
-            <input type="name" name="apellido" id="name2" placeholder="Apellido"
+            <label for="empresa" class="hidden">Empresa</label>
+            <input type="text" name="empresa" id="empresa" placeholder="Empresa (Opcional)"
                 class="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 dark:text-gray-50 font-semibold focus:border-blue-500 focus:outline-none" />
         </div>
 
         <div class="flex flex-col mt-2">
-            <label for="email" class="hidden">Email</label>
-            <input type="email" name="email" id="email" placeholder="Email"
+            <label for="direccion" class="hidden">Dirección</label>
+            <input type="text" name="direccion" id="direccion" placeholder="Dirección"
                 class="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 dark:text-gray-50 font-semibold focus:border-blue-500 focus:outline-none" />
         </div>
 
         <div class="flex flex-col mt-2">
-            <label for="tel" class="hidden">Number</label>
-            <input type="tel" name="telefono" id="tel" placeholder="Telephone Number"
+            <label for="correo" class="hidden">Correo</label>
+            <input type="email" name="correo" id="correo" placeholder="Correo"
+                class="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 dark:text-gray-50 font-semibold focus:border-blue-500 focus:outline-none" />
+        </div>
+
+        <div class="flex flex-col mt-2">
+            <label for="telefono" class="hidden">Telefono</label>
+            <input type="tel" name="telefono" id="telefono" placeholder="Numero de Telefono"
                 class="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 dark:text-gray-50 font-semibold focus:border-blue-500 focus:outline-none" />
         </div>
 
