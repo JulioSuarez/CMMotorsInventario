@@ -22,7 +22,7 @@ input_ci.addEventListener('keyup', (e) => {
 
 //funcion para buscar el ci
 const buscar = (ci) => {
-    fetch("http://localhost:8000/api/ClienteApi/" + ci)
+    fetch("https://cmmotors.net/api/ClienteApi/" + ci)
         .then((res) => res.json()) //promesa
         .then((data) => {
             // MostrarNombre(data.map((item) =>{
@@ -182,7 +182,7 @@ const crearEventListeners = (c) => {
 
 //funcion para buscar el ci
 const buscarCod = (cod, i) => {
-    fetch("http://localhost:8000/api/ProductoApi/" + cod)
+    fetch("https://cmmotors.net/api/ProductoApi/" + cod)
         .then((res) => res.json()) //promesa
         .then((data) => {
             console.warn('entre a buscar en la posicion:' + i);
