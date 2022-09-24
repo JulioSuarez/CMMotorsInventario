@@ -227,7 +227,7 @@
 
 
                     <!-- total amount -->
-                    <div class="flex justify-end font-bold space-x-4 text-2xl border-t border-gray-100 px-5 py-4">
+                    <div class="flex bg-red-300 justify-end font-bold space-x-4 text-2xl border-t border-gray-100 px-5 py-4">
                         {{-- <div>Total
                     <input  class="text-blue-700 type="number" id="monto_total" value="">bs
                 </div> --}}

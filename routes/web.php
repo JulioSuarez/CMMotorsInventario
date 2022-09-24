@@ -10,7 +10,7 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\UbicacionController;
 use App\Http\Controllers\VentasController;
-
+use App\Http\Controllers\RolController;
 
 use PHPUnit\Framework\MockObject\Rule\Parameters;
 
@@ -100,12 +100,34 @@ Route::delete('Sector/{sector}/delete', [UbicacionController::class, 'deleteSect
     ->name('Sector.delete')->middleware('auth');
 
 
-
 Route::resource('Venta', VentasController::class)
     ->Parameters(['Venta' => 'venta'])->names('Venta')->middleware('auth');
+Route::get('Cotizar', [VentasController::class, 'indexCotizar'])
+    ->name('Cotizar.index')->middleware('auth');
+Route::get('Cotizar/create', [VentasController::class, 'createCotizar'])
+    ->name('Cotizar.create')->middleware('auth');
+Route::post('Cotizar/store', [VentasController::class, 'storeCotizar'])
+    ->name('Cotizar.store')->middleware('auth');
+Route::get('Cotizar/{co}/edit', [VentasController::class, 'editCotizar'])
+    ->name('Cotizar.edit')->middleware('auth');
+Route::put('Cotizar/{co}/update', [VentasController::class, 'updateCotizar'])
+    ->name('Cotizar.update')->middleware('auth');
+Route::delete('Cotizar/{co}/delete', [VentasController::class, 'deleteCotizar'])
+    ->name('Cotizar.delete')->middleware('auth');
 
 
 // ruta de prueba julico
 Route::post('myurl', [AuthController::class, 'show']);
 Route::get('/navegador', [ProductoController::class, 'navar'])
-->name('navegador');
+    ->name('navegador');
+
+
+
+/// ruta de roles by Julico
+Route::resource('Rol', RolController::class)->except(['show'])->middleware('auth');
+//rutas de PERMISOS
+Route::get('Permisos', [RolController::class, 'crearPermisos'])->name('Permiso.create')->middleware('auth');
+Route::post('Permisos', [RolController::class, 'storePermisos'])->name('Permiso.store')->middleware('auth');
+Route::get('Permisos/{rol}/edit', [RolController::class, 'editPermisos'])->name('Permiso.edit')->middleware('auth');
+Route::put('Permisos/{rol}', [RolController::class, 'updatePermisos'])->name('Permiso.update')->middleware('auth');
+Route::delete('Permisos/{rol}', [RolController::class, 'deletePermisos'])->name('Permiso.deletePermisos')->middleware('auth');

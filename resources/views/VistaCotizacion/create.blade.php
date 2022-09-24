@@ -1,8 +1,6 @@
 @extends('navegador')
 
 @section('Contenido')
-<link rel="stylesheet" href="{{ asset('css/desabilitarInputNumber.css') }}" />
-
     <form action="{{ Route('Venta.store') }}" method="POST">
         @csrf
         @method('POST')
@@ -10,7 +8,7 @@
 
             <div class="py-4 px-6 max-w-full m-5 bg-white rounded-xl "> <!--container max-w-lg -->
                 <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight ">
-                    REALIZAR UNA VENTA
+                    REALIZAR UNA COTIZACION
                 </h1>
                 <p class=" text-gray-500 font-bold mt-2 " for="">Empleado: {{ $empleado->nombre }} {{ $empleado->apellido }} </p>
                 <input type="number" name="ci_empleado" id="" value="{{ $empleado->ci }}" hidden>
@@ -19,7 +17,6 @@
                 <label for="ci_autocomplete" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">
                     Numero de Carnet:
                 </label>
-
                 <div class="relative mt-0 mb-1">
                     <div class="absolute text-gray-600 flex items-center px-4 border-r h-full">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-credit-card"
@@ -55,11 +52,10 @@
                 <label for="empresa" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Empresa:</label>
                 <input id="empresa"
                     class="mt-0 mb-1 text-gray-600 focus:outline-none focus:border focus:border-blue-900 font-normal w-full h-8 flex items-center pl-3 text-sm border-gray-300 rounded border"
-                    name="empresa" type="text" />
+                    name="empresa" type="number" />
 
                 <label for="nit" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Nit de la
-                    Empresa:
-                </label>
+                    Empresa:</label>
                 <input id="nit"
                     class="mt-0 mb-1 text-gray-600 focus:outline-none focus:border focus:border-blue-900 font-normal w-full h-8 flex items-center pl-3 text-sm border-gray-300 rounded border"
                     name="nit" type="number" />
@@ -68,7 +64,7 @@
         </div>
 
 
-        <div class=" max-w-full mt-5 mx-5 rounded-lg  bg-white shadow-lg border border-black ">
+        <div class=" max-w-full mt-5 mx-5 rounded-lg  shadow-lg border border-black ">
 
 
             <div class="overflow-x-auto w-full rounded-t-lg bg-white">
@@ -116,37 +112,17 @@
                             </td>
 
                             <td class="border border-black">
-                                <div class="flex  justify-between">
-                                    <input type="number" class=" text-center font-medium text-black w-full h-full p-1" name="cantidad[]"
-                                    id="cantidad1" value="1" min="1">
-
-                                    <div class="flex items-center mr-0.5  justify-between" id="div_cantidad">
-                                        <button id="button_sumar1" >
-                                            <svg class="w-4 h-4 text-green-700 border border-green-700 rounded-3xl font-bold"
-                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" >
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                                            </svg>
-                                        </button>
-
-                                        <button id="button_restar1" >
-                                            <svg class="w-5 h-5 ml-1  text-red-700 font-bold"
-                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" >
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                            </svg>
-                                        </button>
-                                    </div>
-
-                                </div>
-
+                                <input type="number" class=" text-center font-medium text-black w-full h-full p-1" name="cantidad[]"
+                                    id="cantidad1" value="1" >
                             </td>
 
                             <td class="border border-black">
                                 <input class=" text-center font-medium text-black w-full h-full p-1" name="precio[]" id="precio1"
-                                value="{{00}}" type="number" min="0">
+                                value="{{00}}" type="number">
                             </td>
                             <td class="border border-black">
                                 <input class=" text-center  font-medium text-black w-full h-full p-1" name="subtotal[]" id="subtotal1"
-                                value="{{00}}" type="number" readonly min="0">
+                                value="{{00}}" type="number" readonly>
                             </td>
 
                             {{-- botono de elimniar --}}
@@ -172,7 +148,7 @@
 
 
 
-            <div class="flex justify-between pt-1">
+            <div class="flex justify-between pt-1 bg-white">
                     <div class="flex-initial ml-1 ">
                         <button type="submit"  id="button_adicionar"
                             class="flex items-center px-1 py-2 font-medium tracking-wide text-white capitalize   hover:text-green-900  focus:outline-none transition duration-300 transform active:scale-95 ease-in-out text-sm  ">
@@ -181,14 +157,13 @@
                             </svg>
                             <span class=" text-sm ml-1 text-green-700">Adicionar</span>
                         </button>
-
                     </div>
 
 
 
-                <div class=" m-2 mr-5 ">
-                        <label class="font-semibold text-sm text-black  ">Monto total:</label>
-                        <input class="w-12 bg-white text-black text-center border border-gray-400" type="number" name="monto_total" id="monto_total"
+                <div class=" m-2 ">
+                        <label class="font-semibold text-sm text-black ">Monto total:</label>
+                        <input class="w-12 bg-white text-black text-right" type="number" name="monto_total" id="monto_total"
                         value="0" readonly>
 
                         <label class="text-black ">Bs</label>
@@ -196,21 +171,7 @@
                 </div>
             </div>
 
-            <div class="flex justify-end m-1 mr-6">
-                <label class="text-black" for="">Descuento:
-                    <input class="h-6 w-12  text-center border border-gray-400" type="number" value="0">
-                %
-                </label>
-            </div>
-
-            <div class="flex justify-end m-1 mr-5">
-                <label class="text-black" for="">Monto Total
-                    <input class="h-6 w-12  text-center border border-gray-400" type="number" value="0">
-                Bs
-                </label>
-            </div>
-
-                <div class="flex flex-row-reverse py-2   rounded-b-lg">
+                <div class="flex flex-row-reverse py-2  bg-white  rounded-b-lg">
                     <div class="flex-initial pr-2">
                         <button type="submit"
                             class="flex items-center px-2 py-2 font-medium tracking-wide text-white capitalize  bg-gray-700 rounded-md hover:bg-gray-500   focus:outline-none focus:bg-gray-900  transition duration-300 transform active:scale-95 ease-in-out text-sm  ml-4 ">

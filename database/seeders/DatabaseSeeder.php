@@ -19,6 +19,11 @@ use App\Models\Sector;
 use App\Models\Ubicacion;
 use App\Models\Venta;
 
+//libreria de roles by Julico
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Traits\HasRoles;
+
 
 use Illuminate\Support\Str;
 
@@ -35,6 +40,67 @@ class DatabaseSeeder extends Seeder
 
         $this->CargaUser();
         $this->cargarDatosPruebas();
+        $this->CargarRolePermisos(); //roles y permisos by Julico
+    }
+    public function CargarRolePermisos()
+    {
+        // creamos los roles
+        //variable      =   modelo      atributo
+        $Admin          = Role::create(['name' => 'Administrador']);
+        $gerente         = Role::create(['name' => 'gerente']);
+        $ferreteria         = Role::create(['name' => 'ferreteria']);
+        $repuestos       = Role::create(['name' => 'repuestos']);
+
+        ////////////ADMIN
+        Permission::create(['name' => 'admin'])->syncRoles([$Admin]);
+        ////////////ROLES
+        Permission::create(['name' => 'roles.index'])->syncRoles([$Admin]);
+        Permission::create(['name' => 'roles.creatit'])->syncRoles([$Admin]);
+        Permission::create(['name' => 'roles.destroy'])->syncRoles([$Admin]);
+        Permission::create(['name' => 'roles.edte'])->syncRoles([$Admin]);
+        ////////////EMPLEADOS
+        Permission::create(['name' => 'empleados.index'])->syncRoles([$Admin,$gerente]);
+        Permission::create(['name' => 'empleados.create'])->syncRoles([$Admin,$gerente]);
+        Permission::create(['name' => 'empleados.edit'])->syncRoles([$Admin,$gerente]);
+        Permission::create(['name' => 'empleados.destroy'])->syncRoles([$Admin,$gerente]);
+        Permission::create(['name' => 'empleados.pdf'])->syncRoles([$Admin,$gerente]);
+        ////////////PRODUCTOS
+        Permission::create(['name' => 'productos.index'])->syncRoles([$Admin,$gerente,$ferreteria,$repuestos]);
+        Permission::create(['name' => 'productos.create'])->syncRoles([$Admin,$gerente]);
+        Permission::create(['name' => 'productos.edit'])->syncRoles([$Admin,$gerente]);
+        Permission::create(['name' => 'productos.destroy'])->syncRoles([$Admin,$gerente]);
+        ////////////CLIENTES
+        Permission::create(['name' => 'cliente.index'])->syncRoles([$Admin,$gerente,$ferreteria,$repuestos]);
+        Permission::create(['name' => 'cliente.create'])->syncRoles([$Admin,$gerente]);
+        Permission::create(['name' => 'cliente.edit'])->syncRoles([$Admin,$gerente]);
+        Permission::create(['name' => 'cliente.destroy'])->syncRoles([$Admin,$gerente]);
+        Permission::create(['name' => 'cliente.bitacora'])->syncRoles([$Admin,$gerente]);
+        ////////////DASHBOARD
+        Permission::create(['name' => 'dashboard.index'])->syncRoles([$Admin,$gerente,$ferreteria,$repuestos]);
+        Permission::create(['name' => 'dashboard.ventasdias'])->syncRoles([$Admin,$gerente]);
+        Permission::create(['name' => 'dashboard.ventasmes'])->syncRoles([$Admin,$gerente]);
+        Permission::create(['name' => 'dashboard.pagos'])->syncRoles([$Admin,$gerente]);
+        Permission::create(['name' => 'dashboard.cobros'])->syncRoles([$Admin,$gerente]);
+        ////////////NAVEGADOR
+        Permission::create(['name' => 'navegador.buscador'])->syncRoles([$Admin,$gerente]);
+        Permission::create(['name' => 'navegador.dark'])->syncRoles([$Admin,$gerente]);
+        Permission::create(['name' => 'navegador.logout'])->syncRoles([$Admin,$gerente,$ferreteria,$repuestos]);
+        ////////////VENTAS
+        Permission::create(['name' => 'ventas.index'])->syncRoles([$Admin,$gerente]);
+        Permission::create(['name' => 'ventas.create'])->syncRoles([$Admin,$gerente]);
+        Permission::create(['name' => 'ventas.edit'])->syncRoles([$Admin,$gerente]);
+        Permission::create(['name' => 'ventas.destroy'])->syncRoles([$Admin,$gerente]);
+        ////////////COTIZACION
+        Permission::create(['name' => 'cotizacion.index'])->syncRoles([$Admin,$gerente]);
+        Permission::create(['name' => 'cotizacion.create'])->syncRoles([$Admin,$gerente]);
+        Permission::create(['name' => 'cotizacion.edit'])->syncRoles([$Admin,$gerente]);
+        Permission::create(['name' => 'cotizacion.destroy'])->syncRoles([$Admin,$gerente]);
+        ////////////PROVEEDORES
+        Permission::create(['name' => 'proveedores.index'])->syncRoles([$Admin,$gerente]);
+        Permission::create(['name' => 'proveedores.create'])->syncRoles([$Admin,$gerente]);
+        Permission::create(['name' => 'proveedores.edit'])->syncRoles([$Admin,$gerente]);
+        Permission::create(['name' => 'proveedores.destroy'])->syncRoles([$Admin,$gerente]);
+        ////////////
     }
 
     public function CargaUser()

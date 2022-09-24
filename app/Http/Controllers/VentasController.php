@@ -8,6 +8,8 @@ use App\Models\DetalleVenta;
 use App\Models\Empleado;
 use App\Models\Producto;
 use App\Models\Cliente;
+use App\Models\Cotizacion;
+use App\Models\DetalleCotizacion;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -39,12 +41,29 @@ class VentasController extends Controller
         ->where('id_usuario',$user)->first();
 
         $productos = Producto::get();
-        return view('VistaVentas.create',compact('clientes','empleado','productos'));
+        return view('VistaVentas.create1',compact('clientes','empleado','productos'));
     }
 
 
     public function store(Request $r){
-  //     dd($r);
+    //dd($r);
+
+        $c = Cliente::where('ci',$r->ci_cliente)->first();
+        if($c==null){
+            $c = new Cliente();
+        }
+
+        $c->ci = $r->ci_cliente;
+        $c->nombre = $r->cliente;
+        $c->empresa =  $r->empresa;
+        $c->nit =  $r->nit;
+        //$c->correo = $r->correo;
+        $c->telefono =  $r->telefono;
+       // $c->direccion = $r->direccion;
+        $c->save();
+
+
+     // dd($r);
         $v = new Venta();
         $v->monto_total = $r->monto_total;
         $v->fecha = date('Y-m-d'); //hacerlo automatico
@@ -159,5 +178,60 @@ class VentasController extends Controller
 
 
     //cotizaciones
+
+    public function indexCotizar(){
+        $cotizaciones = Cotizacion::get();
+       // dd($cotizaciones);
+        return view('VistaCotizacion.index',compact('cotizaciones'));
+    }
+
+    public function createCotizar(){
+       //   dd('Holaa que onda puto!!!');
+        $clientes = Cliente::get();
+        $user = Auth::user()->id;
+        // dd($user);
+        $empleado = Empleado::join('users','users.id','=',
+        'empleados.id_usuario')->select('empleados.*','users.nombre_usuario')
+        ->where('id_usuario',$user)->first();
+
+        $productos = Producto::get();
+        return view('VistaCotizacion.create',compact('clientes','empleado','productos'));
+    }
+
+    public function cotizarStore(Cotizacion $co, $r){
+        // dd($r);
+        $v = new Venta();
+        $v->monto_total = $r->monto_total;
+        $v->fecha = date('Y-m-d'); //hacerlo automatico
+        $v->hora = date('H:i:s');  //hacerlo automatico
+        $v->ci_cliente = $r->ci_cliente;
+        $v->ci_empleado = $r->ci_empleado; //dacar el nombre del empleado
+        $v->save();
+        // dd($r->nit);
+        //dd(count($r->cod_oem));
+        //  falta cargar empres, nit , telefono
+        for ($i=0; $i < count($r->cod_oem) ; $i++) {
+            $id_producto = Producto::where('cod_oem',$r->cod_oem[$i])->first();
+            $d = new DetalleVenta();
+        //   $d->detalle = $r->detalles[$i];
+            $d->cantidad = $r->cantidad[$i];
+            $d->precio =  $r->subtotal[$i];
+            $d->id_producto = $id_producto->id;
+            $d->id_venta = $v->id;
+            $d->save();
+        }
+    }
+
+    public function cotizarEdit(Venta $venta){
+
+    }
+
+    public function cotizarUpdate(Venta $venta){
+
+    }
+
+    public function cotizarDestroy(Venta $venta){
+
+    }
 
 }

@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Empleado;
 use App\Models\User;
 
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+
 class EmpleadoController extends Controller
 {
     /**
@@ -16,9 +19,9 @@ class EmpleadoController extends Controller
     public function index()
     {
         $empleados = Empleado::get();
-      //  dd($emp);
-        return view('VistaEmpleados.index',compact('empleados'));
-      //  return $emp;  //api
+        //  dd($emp);
+        return view('VistaEmpleados.index', compact('empleados'));
+        //  return $emp;  //api
     }
     /**
      * Show the form for creating a new resource.
@@ -27,7 +30,8 @@ class EmpleadoController extends Controller
      */
     public function create()
     {
-        return view('VistaEmpleados.create');
+        $roles = Role::all()->pluck('name', 'id');
+        return view('VistaEmpleados.create', compact('roles'));
     }
 
     /**
@@ -39,26 +43,28 @@ class EmpleadoController extends Controller
     public function store(Request $r)
     {
 
-       $user = new User();
-       $user->nombre_usuario = $r->user;
-       $user->correo_electronico = $r->correo;
-       $user->password = $r->password;
-       $user->save();
+        $roles = $r->input('roles', []); //obtenemos los roles
+        $user = new User();
+        $user->nombre_usuario = $r->user;
+        $user->correo_electronico = $r->correo;
+        $user->password = $r->password;
+        $user->syncRoles($roles); //asignamos los roles al usuario
+        $user->save();
 
-       $emp = new Empleado();
-       $emp->ci = $r->ci;
-       $emp->nombre = $r->nombre;
-       $emp->apellido =  $r->apellido;
-       $emp->telefono =  $r->telefono;
-       $emp->foto = 'foto!!';
-       $emp->sello = 'sello';
-       $emp->firma = 'firma';
-       $id_user = User::where('nombre_usuario',$user->nombre_usuario)
+        $emp = new Empleado();
+        $emp->ci = $r->ci;
+        $emp->nombre = $r->nombre;
+        $emp->apellido =  $r->apellido;
+        $emp->telefono =  $r->telefono;
+        $emp->foto = 'foto!!';
+        $emp->sello = 'sello';
+        $emp->firma = 'firma';
+        $id_user = User::where('nombre_usuario', $user->nombre_usuario)
             ->first();
         $emp->id_usuario = $id_user->id;
-       $emp->save();
+        $emp->save();
 
-       return redirect()->route('Empleado.index');
+        return redirect()->route('Empleado.index');
     }
 
     /**
@@ -80,10 +86,10 @@ class EmpleadoController extends Controller
      */
     public function edit(Empleado $empleado)
     {
-     //   dd($empleado);
-        $user = User:: where('id',$empleado->id_usuario)->first();
-        //dd($user);
-        return view('VistaEmpleados.edit',compact('empleado','user'));
+        //   dd($empleado);
+        $roles = Role::all()->pluck('name', 'id');
+        $user = User::where('id', $empleado->id_usuario)->first();
+        return view('VistaEmpleados.edit', compact('empleado', 'user','roles'));
     }
     /**
      * Update the specified resource in storage.
@@ -95,10 +101,12 @@ class EmpleadoController extends Controller
     public function update(Request $r, Empleado $empleado)
     {
 
-        $user = User:: where('id',$empleado->id_usuario)->first();
+        $roles = $r->input('roles', []); //obtenemos los roles
+        $user = User::where('id', $empleado->id_usuario)->first();
         $user->nombre_usuario = $r->user;
         $user->correo_electronico = $r->correo;
         $user->password = $r->password;
+        $user->syncRoles($roles); //asignamos los roles al usuario
         $user->save();
 
         $emp = $empleado;
@@ -109,8 +117,8 @@ class EmpleadoController extends Controller
         $emp->foto = 'foto!!';
         $emp->sello = 'sello';
         $emp->firma = 'firma';
-        $id_user = User::where('nombre_usuario',$user->nombre_usuario)
-             ->first();
+        $id_user = User::where('nombre_usuario', $user->nombre_usuario)
+            ->first();
         $emp->id_usuario = $id_user->id;
         $emp->save();
 
@@ -127,11 +135,10 @@ class EmpleadoController extends Controller
     public function destroy(Empleado $empleado)
     {
 
-        $user = User:: where('id',$empleado->id_usuario)->first();
-       // dd($user);
+        $user = User::where('id', $empleado->id_usuario)->first();
+        // dd($user);
         $empleado->delete();
         $user->delete();
         return redirect()->route('Empleado.index');
-
     }
 }

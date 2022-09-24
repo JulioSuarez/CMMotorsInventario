@@ -43,49 +43,49 @@
                                                     alt="" loading="lazy" />
                                                 <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true">
                                                 </div> --}}
-                                            </div>
-                                            <div>
-                                                <p class="font-semibold">{{ $p->nombre }} </p>
-                                                <p class="text-xs text-gray-600 dark:text-gray-400">{{ $p->empresa }}</p>
-                                            </div>
                                         </div>
-                                    </td>
-                                    <td class="px-4 py-3 text-sm">{{ $p->ci }}</td>
-                                    <td class="px-4 py-3 text-sm">
-                                        <p>{{ $p->telefono }}</p>
-                                    </td>
-                                    <td class="text-xs text-gray-600 dark:text-gray-400">
-                                        <p>{{ $p->direccion }}</p>
-                                    </td>
-                                    <td class="px-4 py-3 text-xs">
-                                        <p>{{ $p->correo }}</p>
-                                    </td>
-                                    <td class="px-4 py-3 text-xs">
-                                        <button type="button"
-                                            class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                            <a href="{{ Route('Cliente.edit', $p->ci) }}">
-                                                EDITAR
-                                            </a></button>
-                                            <button type="button"
-                                                class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-700">
-                                                <form action="{{ Route('Cliente.destroy', $p->ci) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <input type="submit" value="ELIMINAR" class=""
-                                                        onclick="return confirm('Desea Eliminar?')">
-                                                </form>
-                                            </button>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                                        <div>
+                                            <p class="font-semibold">{{ $p->nombre }} </p>
+                                            <p class="text-xs text-gray-600 dark:text-gray-400">{{ $p->empresa }}</p>
+                                        </div>
                 </div>
-                <div
-                    class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800">
-                    <!-- Pagination -->
-                </div>
+                </td>
+                <td class="px-4 py-3 text-sm">{{ $p->ci }}</td>
+                <td class="px-4 py-3 text-sm">
+                    <p>{{ $p->telefono }}</p>
+                </td>
+                <td class="text-xs text-gray-600 dark:text-gray-400">
+                    <p>{{ $p->direccion }}</p>
+                </td>
+                <td class="px-4 py-3 text-xs">
+                    <p>{{ $p->correo }}</p>
+                </td>
+                <td class="px-4 py-3 text-xs">
+                    <button type="button"
+                        class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+                        <a href="{{ Route('Cliente.edit', $p->ci) }}">
+                            EDITAR
+                        </a></button>
+                    <button type="button"
+                        class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-700">
+                        <form action="{{ Route('Cliente.destroy', $p->ci) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" value="ELIMINAR" class=""
+                                onclick="return confirm('Desea Eliminar?')">
+                        </form>
+                    </button>
+                </td>
+                </tr>
+                @endforeach
+                </tbody>
+                </table>
+            </div>
+            <div
+                class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800">
+                <!-- Pagination -->
             </div>
         </div>
+    </div>
     </div>
 @endsection

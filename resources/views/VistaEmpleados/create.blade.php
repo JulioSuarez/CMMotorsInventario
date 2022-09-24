@@ -5,17 +5,17 @@
         @method('POST')
         <div class="flex flex-col mt-2">
             <label for="name" class="hidden">Usuario</label>
-            <input type="name" name="ci" id="name" placeholder="Usuario"
+            <input type="name" name="user" id="name" placeholder="Usuario"
                 class="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 dark:text-gray-50 font-semibold focus:border-blue-500 focus:outline-none" />
         </div>
         <div class="flex flex-col mt-2">
             <label for="email" class="hidden">Email</label>
-            <input type="email" name="email" id="email" placeholder="Correo Electronico"
+            <input type="email" name="correo" id="email" placeholder="Correo Electronico"
                 class="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 dark:text-gray-50 font-semibold focus:border-blue-500 focus:outline-none" />
         </div>
         <div class="flex flex-col mt-2">
             <label for="name" class="hidden">Contraseña</label>
-            <input type="password" name="ci" id="name" placeholder="******"
+            <input type="password" name="password" id="name" placeholder="******"
                 class="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 dark:text-gray-50 font-semibold focus:border-blue-500 focus:outline-none" />
         </div>
         <div class="flex flex-col mt-2">
@@ -38,8 +38,23 @@
 
         <div class="flex flex-col mt-2">
             <label for="tel" class="hidden">Telefono</label>
-            <input type="tel" name="telefono" id="tel" placeholder="Numero de Telefono"
+            <input type="tel" name="telefono" id="tel" placeholder="Numero de Telefono2"
                 class="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 dark:text-gray-50 font-semibold focus:border-blue-500 focus:outline-none" />
+        </div>
+
+        <div class="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 dark:text-gray-50 font-semibold focus:border-blue-500 focus:outline-none">
+            {{-- <label for="roles[]" class="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 dark:text-gray-50 font-semibold focus:border-blue-500 focus:outline-none">
+                Seleccionar Rol
+            </label> --}}
+            <p>
+                Seleccionar un ROL
+            </p>
+            @foreach ($roles as $id => $role)
+                <input type="checkbox" name="roles[]" value="{{ $id }}" class="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 dark:text-gray-50 font-semibold focus:border-blue-500 focus:outline-none" />
+                <span>
+                    {{ $role }}
+                </span><br>
+            @endforeach
         </div>
 
         <button type="submit"
