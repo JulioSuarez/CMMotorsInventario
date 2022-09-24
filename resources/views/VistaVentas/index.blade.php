@@ -32,9 +32,9 @@
                 class="md:w-32 bg-blue-600 dark:bg-gray-100 text-white dark:text-gray-800 font-bold py-3 px-6 rounded-lg mt-4 hover:bg-blue-500 dark:hover:bg-gray-200 transition ease-linear duration-300"
                 type="button">REGISTRAR</a>
 
-            <a href="{{ Route('Cotizar.index') }}"
-            class="border border-black font-semibold bg-white text-black rounded-lg"
-            type="button">REGISTRO DE COTIZACION </a>
+            <a href="{{ Route('Cotizar.index') }}" class="border border-black font-semibold bg-white text-black rounded-lg"
+                type="button">REGISTRO DE COTIZACION
+            </a>
         </div>
         <div class="relative w-full max-w-full flex-grow flex-1">
             <h3 class="font-semibold text-base text-gray-900 dark:text-gray-50"></h3>

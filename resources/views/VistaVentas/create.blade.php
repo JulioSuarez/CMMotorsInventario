@@ -225,7 +225,6 @@
 
 
 
-
                     <!-- total amount -->
                     <div class="flex bg-red-300 justify-end font-bold space-x-4 text-2xl border-t border-gray-100 px-5 py-4">
                         {{-- <div>Total
