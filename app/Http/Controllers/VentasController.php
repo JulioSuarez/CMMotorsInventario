@@ -41,7 +41,7 @@ class VentasController extends Controller
         ->where('id_usuario',$user)->first();
 
         $productos = Producto::get();
-        return view('VistaVentas.create1',compact('clientes','empleado','productos'));
+        return view('VistaVentas.create',compact('clientes','empleado','productos'));
     }
 
 
