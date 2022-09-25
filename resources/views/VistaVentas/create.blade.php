@@ -244,3 +244,4 @@
 
     <script src="{{ asset('js/Autocompletes/adicionarProducto.js')}}"></script>
 @endsection
+
