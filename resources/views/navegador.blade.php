@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>CM Motor's Import Export2</title>
+    <title>CM Motor's Import Export1</title>
     {{-- @vite('resources/css/app.css') --}}
     <link rel="stylesheet" href="{{ asset('css/app.css') }}" /> <!-- este es de tailwin-->
     {{-- <link rel="stylesheet" href="{{ asset('css/style.css') }}"> <!-- no existe este archivo--> --}}
